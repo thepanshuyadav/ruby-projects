@@ -3,4 +3,13 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  namespace :api do
+    namespace :v1 do
+      # post 'authenticate', to: 'authentication#create'
+      resources :users, only: %i[create]
+      resources :articles, only: %i[index create show] do
+        resources :likes, only: %i[create]
+      end
+    end
+  end
 end
