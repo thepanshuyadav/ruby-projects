@@ -8,7 +8,9 @@ Rails.application.routes.draw do
       # post 'authenticate', to: 'authentication#create'
       resources :users, only: %i[create]
       resources :articles, only: %i[index create show] do
-        resources :likes, only: %i[create]
+        delete '/likes' => 'likes#destroy'
+        post '/likes' => 'likes#create'
+        get '/likes' => 'likes#index'
       end
     end
   end
