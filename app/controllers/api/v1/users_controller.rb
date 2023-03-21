@@ -5,6 +5,7 @@ module Api
       def create
         # Create new user
         user = User.new(user_params)
+        p user.password
         if user.save
           render json: UserRepresenter.new(user).as_json, status: :created
         else
@@ -15,7 +16,7 @@ module Api
       private
 
       def user_params
-        params.require(:user).permit(:name)
+        params.require(:user).permit(:name, :password)
       end
     end
   end

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   namespace :api do
     namespace :v1 do
-      # post 'authenticate', to: 'authentication#create'
+      post 'authenticate', to: 'authentication#create'
       resources :users, only: %i[create]
       resources :articles, only: %i[index create show] do
         delete '/likes' => 'likes#destroy'
